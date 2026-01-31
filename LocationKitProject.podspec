@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   # -------------------- 修改重点 --------------------
   # 将目标版本提升到 16.0 以解决 measurementSystem 报错
-  s.ios.deployment_target = '16.0'
+  s.ios.deployment_target = '17.0'
   
   # 指定 Swift 版本为 5.0
   s.swift_version = '5.0'
