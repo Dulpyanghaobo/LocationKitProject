@@ -1,0 +1,161 @@
+# LocationKit Project Rules
+
+> **IMPORTANT**: Before writing ANY location or weather related code, you MUST read `AGENTS.md` first.
+
+---
+
+## 📖 Knowledge Reference
+
+The complete LocationKit architecture, API reference, and code patterns are documented in:
+
+**→ `AGENTS.md`** (Read this first!)
+
+This file contains:
+- Mental Model (architecture diagram)
+- Core Concepts (Burst Cache, Smart Timestamp)
+- Critical Rules (Facade usage, async/await, WeatherKit compliance)
+- Code Patterns (UIKit, SwiftUI, Error Handling)
+- Troubleshooting Checklists
+
+---
+
+## ⛔ Code Behavior Rules (HIGH PRIORITY)
+
+### Rule 1: NO Direct CoreLocation Usage
+
+```swift
+// ❌ FORBIDDEN - Never write code like this:
+import CoreLocation
+let manager = CLLocationManager()
+manager.requestWhenInUseAuthorization()
+manager.startUpdatingLocation()
+
+// ❌ FORBIDDEN - Never instantiate internal services:
+let locationManager = LocationManager()
+let geocoding = GeocodingService.shared
+let weather = AppleWeatherService.shared
+```
+
+### Rule 2: USE LocationKit Facade ONLY
+
+```swift
+// ✅ ALWAYS use the Facade:
+import LocationKitProject
+
+let context = try await LocationKit.shared.fetchCameraContext(
+    scene: .work,   // or .travel
+    mode: .fast     // or .accurate
+)
+
+// ✅ Use convenience methods:
+let workContext = try await LocationKit.shared.fetchWorkContext()
+let travelContext = try await LocationKit.shared.fetchTravelContext()
+let burstContext = try await LocationKit.shared.fetchBurstContext()
+```
+
+### Rule 3: ASYNC/AWAIT Required
+
+```swift
+// ❌ WRONG - No completion handlers exist:
+LocationKit.shared.fetchContext { result in }  // Does not exist!
+
+// ✅ CORRECT - Always use async/await:
+Task {
+    do {
+        let context = try await LocationKit.shared.fetchCameraContext(scene: .work, mode: .fast)
+    } catch {
+        // Handle error
+    }
+}
+```
+
+### Rule 4: WeatherKit Attribution is MANDATORY
+
+When displaying weather data, you MUST include Apple Weather attribution:
+
+```swift
+// ✅ REQUIRED - Always show attribution when displaying weather:
+if let weather = context.raw.weather {
+    // Show weather
+    Text(context.display.weatherStr)
+    
+    // MANDATORY: Show Apple Weather logo
+    if let logoURL = weather.attributionLogoURL {
+        AsyncImage(url: logoURL).frame(height: 20)
+    }
+    
+    // MANDATORY: Provide legal link access
+    if let legalURL = weather.attributionURL {
+        Link("", destination: legalURL)
+    }
+}
+```
+
+### Rule 5: Use Display Properties for UI
+
+```swift
+// ❌ WRONG - Manual formatting:
+let title = "\(context.raw.address?.locality ?? ""), \(context.raw.address?.subLocality ?? "")"
+
+// ✅ CORRECT - Use pre-formatted display properties:
+titleLabel.text = context.display.title
+subtitleLabel.text = context.display.subtitle
+weatherLabel.text = context.display.weatherStr
+timeLabel.text = context.display.timeStr
+```
+
+---
+
+## 🔍 Quick API Reference
+
+```swift
+// Entry Point
+LocationKit.shared.fetchCameraContext(scene: LocationScene, mode: LocationMode) async throws -> CameraLocationContext
+
+// Scenes
+LocationScene.work    // Watermark camera
+LocationScene.travel  // Travel camera
+
+// Modes
+LocationMode.fast     // 5s timeout
+LocationMode.accurate // 15s timeout
+
+// Return Type
+CameraLocationContext
+├── display.title         // "Beijing, Chaoyang"
+├── display.subtitle      // "Sanlitun SOHO"
+├── display.weatherStr    // "Sunny 25°C"
+├── display.timeStr       // "2026-01-31 18:30:00"
+├── display.altitudeStr   // "50.0 m"
+├── display.coordinateStr // "39.9042°N, 116.4074°E"
+├── flags.isCache         // true if from cache
+├── flags.isMock          // true on simulator
+└── raw.weather?.attributionLogoURL  // Required for compliance!
+
+// Cache Management
+LocationKit.shared.clearCache()
+LocationKit.shared.cacheStatus // (hasCache: Bool, lastTime: Date?)
+```
+
+---
+
+## 📋 Before You Code Checklist
+
+When writing location/weather code, verify:
+
+- [ ] I have read `AGENTS.md` for complete API documentation
+- [ ] I am using `LocationKit.shared` (not direct CoreLocation)
+- [ ] I am using `async/await` (not completion handlers)
+- [ ] I am using `context.display.*` for UI binding
+- [ ] I have included WeatherKit attribution (logo + legal link)
+- [ ] I understand the burst cache behavior (20m/120s thresholds)
+
+---
+
+## 🏷️ File Purpose
+
+| File | Purpose |
+|------|---------|
+| `AGENTS.md` | Complete knowledge base (read this first) |
+| `.cursorrules` | Quick rules and triggers (this file) |
+| `README.md` | Public-facing documentation |

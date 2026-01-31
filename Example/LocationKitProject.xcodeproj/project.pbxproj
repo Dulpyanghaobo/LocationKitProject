@@ -212,10 +212,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = ZR65RQ5GJR;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = ZR65RQ5GJR;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -478,8 +480,14 @@
 			baseConfigurationReference = 2F4F0998FCCA906446B2B381 /* Pods-LocationKitProject_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZR65RQ5GJR;
 				INFOPLIST_FILE = LocationKitProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = Test;
+				INFOPLIST_KEY_NSLocationUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Test;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -494,8 +502,14 @@
 			baseConfigurationReference = F03F8FB406BD8CFE43267C3C /* Pods-LocationKitProject_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZR65RQ5GJR;
 				INFOPLIST_FILE = LocationKitProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationTemporaryUsageDescriptionDictionary = Test;
+				INFOPLIST_KEY_NSLocationUsageDescription = Test;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Test;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -509,6 +523,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FDD57E2EDAB41B4341222B03 /* Pods-LocationKitProject_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZR65RQ5GJR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -518,6 +533,9 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
+				INFOPLIST_KEY_NSLocationUsageDescription = test;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
@@ -532,11 +550,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FCED861725EC3FB892B2CAB /* Pods-LocationKitProject_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = ZR65RQ5GJR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = test;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = test;
+				INFOPLIST_KEY_NSLocationUsageDescription = test;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
