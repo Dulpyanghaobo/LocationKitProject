@@ -16,7 +16,7 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "16.0"
+    "ios": "17.0"
   },
   "swift_versions": "5.0",
   "source_files": "LocationKitProject/Classes/**/*",

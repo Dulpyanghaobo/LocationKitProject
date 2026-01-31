@@ -7,105 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38664CF86C80504B68BC0FE5841376C0 /* LocationKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE58AEC14606CF29C71B0CAE9F37E75E /* LocationKitError.swift */; };
-		4C8445BF7E3FB1EB1B168BB60FE07BB5 /* LocationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24A7D46876A98CA6A930CB11E29AC2 /* LocationKit.swift */; };
+		0BDA5CB6DA40079E2B87DE5367635969 /* LocationKitProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F18318527C7E14530299D9B9B443724 /* LocationKitProject-dummy.m */; };
+		1CF9544B6FFBC8B504CA1D75239C4DD9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E4656B8743222B4E122681E63EFE100B /* README.md */; };
+		1F2C91A762CBEFDA588B0FE6EC6505C2 /* LocationKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAA41C95BA272BE125BBD3CF8DCD279 /* LocationKitError.swift */; };
+		31C8A442176D64A6ADD4173911F90090 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584527FEA4FE25E8EAFCB6E90A34AAE /* LocationManager.swift */; };
+		33DAF09AD95FCA735DE959663E72BEA2 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCB50324C2332692986491865685E1B /* WeatherService.swift */; };
+		495E92798B6AAB5440850E432E3EB4AB /* LocationKit+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FD5458B907D300B9B0A9B03ADB9523 /* LocationKit+Models.swift */; };
 		50941078DD743E84B6ACCE4364F92423 /* Pods-LocationKitProject_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EFFE715DF44C105FB4FEE4698CAF7FDC /* Pods-LocationKitProject_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		55A0566EF2549BE6E7CE18C0F6DBC2DC /* LocationKitProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3903375B8EF6790BEDBB48D91916D /* LocationKitProject-dummy.m */; };
-		5B7E87574EE0A07042CD30CF7AA74BD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		5DD6093797586A07EFCD9A84BCFFC0DC /* LocationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8998AD91875FB72FFF54DD92ABEF8F /* LocationModels.swift */; };
-		60333F597A00101314C943926891F306 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FAC811F5613037DEBEE2FEF02B8E34 /* CLLocation+Extensions.swift */; };
-		634FE2973A0D36CADFF3646292D4CA29 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9738F70A8F67068AEA8CDB6C1CEB7F7 /* LocationManager.swift */; };
 		64436FAAEE03D02D481E894A031D7D98 /* Pods-LocationKitProject_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E381E7542EB848D340A80EAF8FF366E /* Pods-LocationKitProject_Tests-dummy.m */; };
-		67A38ED63765C62BFAC9C1E7AC7FDE1F /* LocationKitProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D012B67DEB4F4C2EE5B8D747F5DF21 /* LocationKitProtocols.swift */; };
-		6DAC2D72C48DBC5A40DBCFE1A31CFB70 /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B6C677D0AEDEF3E9DA96E6D3130ADE /* DistanceCalculator.swift */; };
 		78487CDFEFD5D63FC8500CD34086A65D /* Pods-LocationKitProject_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 528DFAC1D58B9934676570F0C9A097F1 /* Pods-LocationKitProject_Example-dummy.m */; };
-		8C7E20D571B998320CBD9AE8CB49C2AF /* AltitudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10267688A8E7EF415E16AB8DA272C23B /* AltitudeService.swift */; };
-		9DDBDAD0AF99287C826E8DC7F60DE9E3 /* LocationKit+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA48EB50FB85296D2ED51E9BE91292 /* LocationKit+Models.swift */; };
+		79D56AA2C0379ABD6DB9C47579FA4E24 /* LocationKitProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 572E38E8E7179AD1DA6E9C017186CFA7 /* LocationKitProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CD296FF3CBC6A86DAF8FE5E3551B5C4 /* LocationKitProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB217A20064041C3A6E5121FF705C92 /* LocationKitProtocols.swift */; };
+		88F7299B260E2C28D4369A3024599DEB /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0BCDABD7A44F4873084A25BF846AB /* GeocodingService.swift */; };
+		900D087D4AB2B6526C482B544358ED46 /* LocationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732D4CC0546E12DF261F51E87ACC3085 /* LocationKit.swift */; };
+		919A5080F316E16A9F95B37214DE4635 /* LocationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B149BCAB6372F19CEF82633EFC41CD /* LocationModels.swift */; };
 		A3FE34A4554D7EB4401EF9CC969A47B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		A44D645588F9EFA3B527ADADC422169B /* DistanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7938AC49183B59B18B02FDEE9745CAEC /* DistanceCalculator.swift */; };
+		AA0B7A746B27A6587559EF7828B819A1 /* AltitudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4628F359986797A0D1BAC3DACACDBE /* AltitudeService.swift */; };
 		BEAF5904C37921DEDAC47DDA30D7933C /* Pods-LocationKitProject_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB9FFF34CF0F1DDC3C71AA6DC6834645 /* Pods-LocationKitProject_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1BE263FABE1DBFCD564AE5F96060374 /* LocationKitProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6728F642C9E7C5B2DD35EE23BBCAB6E2 /* LocationKitProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C5A3FE94FD4AF9CDCE8DFC166B5218 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 86F56C54DF2114505FE28F23B350720A /* README.md */; };
-		D4A236E52ED1A838FB8BD25615D37655 /* GeocodingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A515DEE68094EE3F0F4F96CADAF92853 /* GeocodingService.swift */; };
+		EE64242837DA182CC69F4C7E8703BD59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		F8C46D8998FACDF8F25EC3635BF31313 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D7B8B4756F6A1C6618616232E9E3A3 /* CLLocation+Extensions.swift */; };
 		FAACAA93DCAFA24DB77BD73F6B11FC5A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E9B68E3419626096060420DE5C646D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D63A08A8EDF343ABF29258942D185F1;
-			remoteInfo = "Pods-LocationKitProject_Example";
-		};
-		CF8655F8AD58E9E3691C2B2CDFCFB81B /* PBXContainerItemProxy */ = {
+		11EECC15EDE49506BB91A1BA8DBEFA00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DD14DC9161EB1F2212CFEDBE79A2A143;
 			remoteInfo = LocationKitProject;
 		};
+		28A72C4634DEF2636B0DFE92B6CA1C71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D63A08A8EDF343ABF29258942D185F1;
+			remoteInfo = "Pods-LocationKitProject_Example";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05FE71E94F31CD9B2027F607480A135D /* LocationKitProject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LocationKitProject.modulemap; sourceTree = "<group>"; };
-		10267688A8E7EF415E16AB8DA272C23B /* AltitudeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AltitudeService.swift; sourceTree = "<group>"; };
 		1126B0F1917D8BD612DB3FBE11F8668B /* Pods-LocationKitProject_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LocationKitProject_Tests.modulemap"; sourceTree = "<group>"; };
 		116C864FB0D990AE974E40FE5667DF57 /* Pods-LocationKitProject_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LocationKitProject_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		12B19D153944874FE91029C7917DE35D /* LocationKitProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LocationKitProject.release.xcconfig; sourceTree = "<group>"; };
 		13106827AD166AFA54453B715B9CACAE /* Pods-LocationKitProject_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LocationKitProject_Example.modulemap"; sourceTree = "<group>"; };
 		1E381E7542EB848D340A80EAF8FF366E /* Pods-LocationKitProject_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LocationKitProject_Tests-dummy.m"; sourceTree = "<group>"; };
-		29B6C677D0AEDEF3E9DA96E6D3130ADE /* DistanceCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
-		2FF78774C4AFE660D3BCB7C959CA7B0D /* LocationKitProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LocationKitProject.debug.xcconfig; sourceTree = "<group>"; };
+		37B149BCAB6372F19CEF82633EFC41CD /* LocationModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationModels.swift; sourceTree = "<group>"; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3BA51B035695DDBD140E74BCA72CC36C /* LocationKitProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LocationKitProject.debug.xcconfig; sourceTree = "<group>"; };
 		431E5B40E8C8E6E4ED9323AB2C7CC741 /* Pods-LocationKitProject_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LocationKitProject_Example.release.xcconfig"; sourceTree = "<group>"; };
-		461B2173AED6B9ECF026F0E5DED6AB72 /* LocationKitProject.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LocationKitProject.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		4DB3903375B8EF6790BEDBB48D91916D /* LocationKitProject-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LocationKitProject-dummy.m"; sourceTree = "<group>"; };
 		528DFAC1D58B9934676570F0C9A097F1 /* Pods-LocationKitProject_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LocationKitProject_Example-dummy.m"; sourceTree = "<group>"; };
-		5C160826D0D5F02EABDBA68C4463EDD2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		5D8998AD91875FB72FFF54DD92ABEF8F /* LocationModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationModels.swift; sourceTree = "<group>"; };
+		5584527FEA4FE25E8EAFCB6E90A34AAE /* LocationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		572E38E8E7179AD1DA6E9C017186CFA7 /* LocationKitProject-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LocationKitProject-umbrella.h"; sourceTree = "<group>"; };
+		59FD5458B907D300B9B0A9B03ADB9523 /* LocationKit+Models.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LocationKit+Models.swift"; sourceTree = "<group>"; };
+		5A1E6823DDA9A8C731C6001BB740D997 /* LocationKitProject-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LocationKitProject-prefix.pch"; sourceTree = "<group>"; };
 		5FDF420E89CB6137D8EB1C9BA262950D /* Pods-LocationKitProject_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LocationKitProject_Example-frameworks.sh"; sourceTree = "<group>"; };
 		648569CE8CAF50241239E390E68A9EDB /* Pods-LocationKitProject_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LocationKitProject_Tests"; path = Pods_LocationKitProject_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BAFD9A9D1EB8DB8E26756847F1E55F /* Pods-LocationKitProject_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LocationKitProject_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6728F642C9E7C5B2DD35EE23BBCAB6E2 /* LocationKitProject-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LocationKitProject-umbrella.h"; sourceTree = "<group>"; };
+		732D4CC0546E12DF261F51E87ACC3085 /* LocationKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKit.swift; sourceTree = "<group>"; };
+		7938AC49183B59B18B02FDEE9745CAEC /* DistanceCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DistanceCalculator.swift; sourceTree = "<group>"; };
 		7AC097B31AA91CCCABB225043F2F9807 /* Pods-LocationKitProject_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LocationKitProject_Example-Info.plist"; sourceTree = "<group>"; };
-		86F56C54DF2114505FE28F23B350720A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = LocationKitProject/Classes/README.md; sourceTree = "<group>"; };
+		8AB217A20064041C3A6E5121FF705C92 /* LocationKitProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKitProtocols.swift; sourceTree = "<group>"; };
 		8C25C6803BB3E361738E5EB7DF1BFF97 /* Pods-LocationKitProject_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LocationKitProject_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8E97864ED6ECAB2274A9853BD406CCE9 /* LocationKitProject-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LocationKitProject-prefix.pch"; sourceTree = "<group>"; };
+		8F18318527C7E14530299D9B9B443724 /* LocationKitProject-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LocationKitProject-dummy.m"; sourceTree = "<group>"; };
+		8F230D94A66790773DF5FE3B8F53785A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		932919DBF279ABAB13C12B7E47F8CAA4 /* Pods-LocationKitProject_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LocationKitProject_Example"; path = Pods_LocationKitProject_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		940E9B3FCBA34E6C24C2A2609D064486 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		94D012B67DEB4F4C2EE5B8D747F5DF21 /* LocationKitProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKitProtocols.swift; sourceTree = "<group>"; };
+		9D4628F359986797A0D1BAC3DACACDBE /* AltitudeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AltitudeService.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A515DEE68094EE3F0F4F96CADAF92853 /* GeocodingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		A9E13F891A7D1C73DFE58135C3FBC999 /* Pods-LocationKitProject_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LocationKitProject_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ACEF5AE7E2F9E4BBE250A80DD6068C52 /* LocationKitProject-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LocationKitProject-Info.plist"; sourceTree = "<group>"; };
+		B2E26607F77660725162C9C861F03783 /* LocationKitProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LocationKitProject.release.xcconfig; sourceTree = "<group>"; };
 		BB9FFF34CF0F1DDC3C71AA6DC6834645 /* Pods-LocationKitProject_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LocationKitProject_Tests-umbrella.h"; sourceTree = "<group>"; };
-		BE58AEC14606CF29C71B0CAE9F37E75E /* LocationKitError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKitError.swift; sourceTree = "<group>"; };
 		C1870A1AE9F5FB22FED80E0889B841B1 /* Pods-LocationKitProject_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LocationKitProject_Tests-Info.plist"; sourceTree = "<group>"; };
-		C40DF2FC2EDB8905F8E626FF8189D720 /* LocationKitProject-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LocationKitProject-Info.plist"; sourceTree = "<group>"; };
+		CB5B385AA8A6657E20A108338E0435AB /* LocationKitProject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LocationKitProject.modulemap; sourceTree = "<group>"; };
+		CDCB50324C2332692986491865685E1B /* WeatherService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		D06F249D7ADD6DBC3E5BE03FB6342C73 /* LocationKitProject */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LocationKitProject; path = LocationKitProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBB74CE275445ABB9385BEF9F700E346 /* LocationKitProject.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LocationKitProject.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		DEAA41C95BA272BE125BBD3CF8DCD279 /* LocationKitError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKitError.swift; sourceTree = "<group>"; };
+		E4656B8743222B4E122681E63EFE100B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = LocationKitProject/Classes/README.md; sourceTree = "<group>"; };
+		E4E0BCDABD7A44F4873084A25BF846AB /* GeocodingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeocodingService.swift; sourceTree = "<group>"; };
 		E92968FA2026C5CB5B3738D179BB5AC8 /* Pods-LocationKitProject_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LocationKitProject_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		EC416024CCA0E50B5F1C951014F3BF4D /* Pods-LocationKitProject_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LocationKitProject_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ED24A7D46876A98CA6A930CB11E29AC2 /* LocationKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationKit.swift; sourceTree = "<group>"; };
+		ED1A2C110D5308F1BC04711D09394664 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		EFFE715DF44C105FB4FEE4698CAF7FDC /* Pods-LocationKitProject_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LocationKitProject_Example-umbrella.h"; sourceTree = "<group>"; };
-		F3FAC811F5613037DEBEE2FEF02B8E34 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
-		F9738F70A8F67068AEA8CDB6C1CEB7F7 /* LocationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		F9DA48EB50FB85296D2ED51E9BE91292 /* LocationKit+Models.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LocationKit+Models.swift"; sourceTree = "<group>"; };
+		F1D7B8B4756F6A1C6618616232E9E3A3 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		FEC2407D4311DBFDC8E34285DA6C7D1E /* Pods-LocationKitProject_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LocationKitProject_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05D79F91CAE884F0EF9118F87928ECBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE64242837DA182CC69F4C7E8703BD59 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DF8342A383FF53318DE8958959EB568 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FAACAA93DCAFA24DB77BD73F6B11FC5A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44AEA3403C2CE9A88A96C228DC948671 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B7E87574EE0A07042CD30CF7AA74BD1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,36 +122,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		32A2B0DE835156FAD62B6CD7C1F132EA /* Features */ = {
+		2BA7BD888A932D03B7C746FAD7C0D019 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				10267688A8E7EF415E16AB8DA272C23B /* AltitudeService.swift */,
-				29B6C677D0AEDEF3E9DA96E6D3130ADE /* DistanceCalculator.swift */,
-				A515DEE68094EE3F0F4F96CADAF92853 /* GeocodingService.swift */,
-				ED24A7D46876A98CA6A930CB11E29AC2 /* LocationKit.swift */,
-				F9DA48EB50FB85296D2ED51E9BE91292 /* LocationKit+Models.swift */,
+				CB5B385AA8A6657E20A108338E0435AB /* LocationKitProject.modulemap */,
+				8F18318527C7E14530299D9B9B443724 /* LocationKitProject-dummy.m */,
+				ACEF5AE7E2F9E4BBE250A80DD6068C52 /* LocationKitProject-Info.plist */,
+				5A1E6823DDA9A8C731C6001BB740D997 /* LocationKitProject-prefix.pch */,
+				572E38E8E7179AD1DA6E9C017186CFA7 /* LocationKitProject-umbrella.h */,
+				3BA51B035695DDBD140E74BCA72CC36C /* LocationKitProject.debug.xcconfig */,
+				B2E26607F77660725162C9C861F03783 /* LocationKitProject.release.xcconfig */,
 			);
-			name = Features;
-			path = LocationKitProject/Classes/Features;
-			sourceTree = "<group>";
-		};
-		3EF623CC6FC82940D057441567C01C38 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5C160826D0D5F02EABDBA68C4463EDD2 /* LICENSE */,
-				461B2173AED6B9ECF026F0E5DED6AB72 /* LocationKitProject.podspec */,
-				940E9B3FCBA34E6C24C2A2609D064486 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		53D8D6CF2294EDE2DDB3D8599B45DB92 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F3FAC811F5613037DEBEE2FEF02B8E34 /* CLLocation+Extensions.swift */,
-			);
-			name = Extensions;
-			path = LocationKitProject/Classes/Extensions;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LocationKitProject";
 			sourceTree = "<group>";
 		};
 		6E540DC621B45ABB1AB93C4674070811 /* Pods-LocationKitProject_Tests */ = {
@@ -185,6 +170,20 @@
 			path = "Target Support Files/Pods-LocationKitProject_Example";
 			sourceTree = "<group>";
 		};
+		7E6054517D50C164E90C17CD45B3BAC7 /* LocationKitProject */ = {
+			isa = PBXGroup;
+			children = (
+				E4656B8743222B4E122681E63EFE100B /* README.md */,
+				C690D2B40D58CD6A689ABCD4DA6A4FF6 /* Core */,
+				F83BEA990F828AC116D37A476FF0310C /* Extensions */,
+				EF25BDA7F4E23965566934510EC451BA /* Features */,
+				8596A9B7F2FA0B342F6BA997B14210A9 /* Pod */,
+				2BA7BD888A932D03B7C746FAD7C0D019 /* Support Files */,
+			);
+			name = LocationKitProject;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		832EF567EB806FCFB0CC7BB66913C51F /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,18 +193,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		AA0E054B6B376FCC75C14864809360B3 /* LocationKitProject */ = {
+		8596A9B7F2FA0B342F6BA997B14210A9 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				86F56C54DF2114505FE28F23B350720A /* README.md */,
-				F51E4C912AF375962EB4F7E08BF28C54 /* Core */,
-				53D8D6CF2294EDE2DDB3D8599B45DB92 /* Extensions */,
-				32A2B0DE835156FAD62B6CD7C1F132EA /* Features */,
-				3EF623CC6FC82940D057441567C01C38 /* Pod */,
-				D1D9D059E2D3F2B6E72510E10217B5C5 /* Support Files */,
+				8F230D94A66790773DF5FE3B8F53785A /* LICENSE */,
+				DBB74CE275445ABB9385BEF9F700E346 /* LocationKitProject.podspec */,
+				ED1A2C110D5308F1BC04711D09394664 /* README.md */,
 			);
-			name = LocationKitProject;
-			path = ../..;
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		C690D2B40D58CD6A689ABCD4DA6A4FF6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DEAA41C95BA272BE125BBD3CF8DCD279 /* LocationKitError.swift */,
+				8AB217A20064041C3A6E5121FF705C92 /* LocationKitProtocols.swift */,
+				5584527FEA4FE25E8EAFCB6E90A34AAE /* LocationManager.swift */,
+				37B149BCAB6372F19CEF82633EFC41CD /* LocationModels.swift */,
+			);
+			name = Core;
+			path = LocationKitProject/Classes/Core;
 			sourceTree = "<group>";
 		};
 		C6912EDBE126C577FDF315D69A1D77F0 /* Products */ = {
@@ -229,21 +236,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		D1D9D059E2D3F2B6E72510E10217B5C5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				05FE71E94F31CD9B2027F607480A135D /* LocationKitProject.modulemap */,
-				4DB3903375B8EF6790BEDBB48D91916D /* LocationKitProject-dummy.m */,
-				C40DF2FC2EDB8905F8E626FF8189D720 /* LocationKitProject-Info.plist */,
-				8E97864ED6ECAB2274A9853BD406CCE9 /* LocationKitProject-prefix.pch */,
-				6728F642C9E7C5B2DD35EE23BBCAB6E2 /* LocationKitProject-umbrella.h */,
-				2FF78774C4AFE660D3BCB7C959CA7B0D /* LocationKitProject.debug.xcconfig */,
-				12B19D153944874FE91029C7917DE35D /* LocationKitProject.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LocationKitProject";
-			sourceTree = "<group>";
-		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +247,7 @@
 		D62E239D24FFB8B69A3FDEE535FFC46F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AA0E054B6B376FCC75C14864809360B3 /* LocationKitProject */,
+				7E6054517D50C164E90C17CD45B3BAC7 /* LocationKitProject */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -268,29 +260,32 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		F51E4C912AF375962EB4F7E08BF28C54 /* Core */ = {
+		EF25BDA7F4E23965566934510EC451BA /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				BE58AEC14606CF29C71B0CAE9F37E75E /* LocationKitError.swift */,
-				94D012B67DEB4F4C2EE5B8D747F5DF21 /* LocationKitProtocols.swift */,
-				F9738F70A8F67068AEA8CDB6C1CEB7F7 /* LocationManager.swift */,
-				5D8998AD91875FB72FFF54DD92ABEF8F /* LocationModels.swift */,
+				9D4628F359986797A0D1BAC3DACACDBE /* AltitudeService.swift */,
+				7938AC49183B59B18B02FDEE9745CAEC /* DistanceCalculator.swift */,
+				E4E0BCDABD7A44F4873084A25BF846AB /* GeocodingService.swift */,
+				732D4CC0546E12DF261F51E87ACC3085 /* LocationKit.swift */,
+				59FD5458B907D300B9B0A9B03ADB9523 /* LocationKit+Models.swift */,
+				CDCB50324C2332692986491865685E1B /* WeatherService.swift */,
 			);
-			name = Core;
-			path = LocationKitProject/Classes/Core;
+			name = Features;
+			path = LocationKitProject/Classes/Features;
+			sourceTree = "<group>";
+		};
+		F83BEA990F828AC116D37A476FF0310C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F1D7B8B4756F6A1C6618616232E9E3A3 /* CLLocation+Extensions.swift */,
+			);
+			name = Extensions;
+			path = LocationKitProject/Classes/Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		06EA2C672B662D42315132F96C0803EF /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1BE263FABE1DBFCD564AE5F96060374 /* LocationKitProject-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		16D38573FF47030A6C88323AE460B610 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +299,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				50941078DD743E84B6ACCE4364F92423 /* Pods-LocationKitProject_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69C9B1014B8E3E9C88D10A437419D317 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79D56AA2C0379ABD6DB9C47579FA4E24 /* LocationKitProject-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +325,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D656F48A700930F768BEA5A8CE221CFA /* PBXTargetDependency */,
+				2650ADC8E2796F0273040024D7FDCFF3 /* PBXTargetDependency */,
 			);
 			name = "Pods-LocationKitProject_Example";
 			productName = Pods_LocationKitProject_Example;
@@ -341,7 +344,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				B04DEDE07BD21F57D6090E5D16984212 /* PBXTargetDependency */,
+				BD83C3DEFBFE9371F7CA6D0402A52ED5 /* PBXTargetDependency */,
 			);
 			name = "Pods-LocationKitProject_Tests";
 			productName = Pods_LocationKitProject_Tests;
@@ -350,12 +353,12 @@
 		};
 		DD14DC9161EB1F2212CFEDBE79A2A143 /* LocationKitProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E83E21AB96D89A0C86B328FB3BF964C4 /* Build configuration list for PBXNativeTarget "LocationKitProject" */;
+			buildConfigurationList = EF835E992F0863B53AEC47EC522CC47A /* Build configuration list for PBXNativeTarget "LocationKitProject" */;
 			buildPhases = (
-				06EA2C672B662D42315132F96C0803EF /* Headers */,
-				5C3CC116251A84FA7372436570D37BCD /* Sources */,
-				44AEA3403C2CE9A88A96C228DC948671 /* Frameworks */,
-				57A691DD266CA516A9206716D19280F7 /* Resources */,
+				69C9B1014B8E3E9C88D10A437419D317 /* Headers */,
+				6605F34E1507F653765EB649B1FBFEE3 /* Sources */,
+				05D79F91CAE884F0EF9118F87928ECBA /* Frameworks */,
+				DD4EEF13A37D8938C1527CF4C245D4B0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -398,13 +401,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		57A691DD266CA516A9206716D19280F7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8B46EC5DAA3BF0EDED372CCD6AD0629A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,6 +409,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CC96C9A9EE9169844FBE2960B985A020 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD4EEF13A37D8938C1527CF4C245D4B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -430,22 +433,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5C3CC116251A84FA7372436570D37BCD /* Sources */ = {
+		6605F34E1507F653765EB649B1FBFEE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C7E20D571B998320CBD9AE8CB49C2AF /* AltitudeService.swift in Sources */,
-				60333F597A00101314C943926891F306 /* CLLocation+Extensions.swift in Sources */,
-				6DAC2D72C48DBC5A40DBCFE1A31CFB70 /* DistanceCalculator.swift in Sources */,
-				D4A236E52ED1A838FB8BD25615D37655 /* GeocodingService.swift in Sources */,
-				4C8445BF7E3FB1EB1B168BB60FE07BB5 /* LocationKit.swift in Sources */,
-				9DDBDAD0AF99287C826E8DC7F60DE9E3 /* LocationKit+Models.swift in Sources */,
-				38664CF86C80504B68BC0FE5841376C0 /* LocationKitError.swift in Sources */,
-				55A0566EF2549BE6E7CE18C0F6DBC2DC /* LocationKitProject-dummy.m in Sources */,
-				67A38ED63765C62BFAC9C1E7AC7FDE1F /* LocationKitProtocols.swift in Sources */,
-				634FE2973A0D36CADFF3646292D4CA29 /* LocationManager.swift in Sources */,
-				5DD6093797586A07EFCD9A84BCFFC0DC /* LocationModels.swift in Sources */,
-				D3C5A3FE94FD4AF9CDCE8DFC166B5218 /* README.md in Sources */,
+				AA0B7A746B27A6587559EF7828B819A1 /* AltitudeService.swift in Sources */,
+				F8C46D8998FACDF8F25EC3635BF31313 /* CLLocation+Extensions.swift in Sources */,
+				A44D645588F9EFA3B527ADADC422169B /* DistanceCalculator.swift in Sources */,
+				88F7299B260E2C28D4369A3024599DEB /* GeocodingService.swift in Sources */,
+				900D087D4AB2B6526C482B544358ED46 /* LocationKit.swift in Sources */,
+				495E92798B6AAB5440850E432E3EB4AB /* LocationKit+Models.swift in Sources */,
+				1F2C91A762CBEFDA588B0FE6EC6505C2 /* LocationKitError.swift in Sources */,
+				0BDA5CB6DA40079E2B87DE5367635969 /* LocationKitProject-dummy.m in Sources */,
+				7CD296FF3CBC6A86DAF8FE5E3551B5C4 /* LocationKitProtocols.swift in Sources */,
+				31C8A442176D64A6ADD4173911F90090 /* LocationManager.swift in Sources */,
+				919A5080F316E16A9F95B37214DE4635 /* LocationModels.swift in Sources */,
+				1CF9544B6FFBC8B504CA1D75239C4DD9 /* README.md in Sources */,
+				33DAF09AD95FCA735DE959663E72BEA2 /* WeatherService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,58 +464,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B04DEDE07BD21F57D6090E5D16984212 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-LocationKitProject_Example";
-			target = 2D63A08A8EDF343ABF29258942D185F1 /* Pods-LocationKitProject_Example */;
-			targetProxy = 3E9B68E3419626096060420DE5C646D1 /* PBXContainerItemProxy */;
-		};
-		D656F48A700930F768BEA5A8CE221CFA /* PBXTargetDependency */ = {
+		2650ADC8E2796F0273040024D7FDCFF3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LocationKitProject;
 			target = DD14DC9161EB1F2212CFEDBE79A2A143 /* LocationKitProject */;
-			targetProxy = CF8655F8AD58E9E3691C2B2CDFCFB81B /* PBXContainerItemProxy */;
+			targetProxy = 11EECC15EDE49506BB91A1BA8DBEFA00 /* PBXContainerItemProxy */;
+		};
+		BD83C3DEFBFE9371F7CA6D0402A52ED5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-LocationKitProject_Example";
+			target = 2D63A08A8EDF343ABF29258942D185F1 /* Pods-LocationKitProject_Example */;
+			targetProxy = 28A72C4634DEF2636B0DFE92B6CA1C71 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0ADE24B349B0B39652296C4888371CC7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12B19D153944874FE91029C7917DE35D /* LocationKitProject.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/LocationKitProject/LocationKitProject-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/LocationKitProject/LocationKitProject-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LocationKitProject/LocationKitProject.modulemap";
-				PRODUCT_MODULE_NAME = LocationKitProject;
-				PRODUCT_NAME = LocationKitProject;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		30E0B9EFD9A5C45D0D351231E81B30B3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -684,42 +651,6 @@
 			};
 			name = Debug;
 		};
-		9314613835D0F266686CCB82A7326790 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FF78774C4AFE660D3BCB7C959CA7B0D /* LocationKitProject.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/LocationKitProject/LocationKitProject-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/LocationKitProject/LocationKitProject-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LocationKitProject/LocationKitProject.modulemap";
-				PRODUCT_MODULE_NAME = LocationKitProject;
-				PRODUCT_NAME = LocationKitProject;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		976848E5A857BCFC89E837F415286C90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 116C864FB0D990AE974E40FE5667DF57 /* Pods-LocationKitProject_Tests.debug.xcconfig */;
@@ -750,6 +681,79 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BB77D34F81E27B02D4454FDF216C6668 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2E26607F77660725162C9C861F03783 /* LocationKitProject.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/LocationKitProject/LocationKitProject-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/LocationKitProject/LocationKitProject-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LocationKitProject/LocationKitProject.modulemap";
+				PRODUCT_MODULE_NAME = LocationKitProject;
+				PRODUCT_NAME = LocationKitProject;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE07E7BAA5BAA6BA4BCC73C204D686A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BA51B035695DDBD140E74BCA72CC36C /* LocationKitProject.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/LocationKitProject/LocationKitProject-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/LocationKitProject/LocationKitProject-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LocationKitProject/LocationKitProject.modulemap";
+				PRODUCT_MODULE_NAME = LocationKitProject;
+				PRODUCT_NAME = LocationKitProject;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -852,11 +856,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E83E21AB96D89A0C86B328FB3BF964C4 /* Build configuration list for PBXNativeTarget "LocationKitProject" */ = {
+		EF835E992F0863B53AEC47EC522CC47A /* Build configuration list for PBXNativeTarget "LocationKitProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9314613835D0F266686CCB82A7326790 /* Debug */,
-				0ADE24B349B0B39652296C4888371CC7 /* Release */,
+				DE07E7BAA5BAA6BA4BCC73C204D686A7 /* Debug */,
+				BB77D34F81E27B02D4454FDF216C6668 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

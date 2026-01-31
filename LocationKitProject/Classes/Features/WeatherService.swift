@@ -78,18 +78,18 @@ public final class AppleWeatherService: WeatherServiceProtocol, @unchecked Senda
     
     public func fetchCurrentWeather(for location: CLLocation) async throws -> WeatherInfo {
         do {
-            // Fetch current weather and attribution together
-            let weather = try await weatherService.weather(for: location, including: .current, .attribution)
+            // Fetch current weather
+            let currentWeather = try await weatherService.weather(for: location, including: .current)
             
-            let currentWeather = weather.0
-            let attribution = weather.1
+            // Fetch attribution separately
+            let attribution = try await weatherService.attribution
             
             // Map WeatherKit condition to our model
             let condition = mapCondition(currentWeather.condition)
             let iconName = mapIconName(currentWeather.symbolName)
             
             // Convert temperature to Celsius
-            let temperatureCelsius = currentWeather.temperature.converted(to: .celsius).value
+            let temperatureCelsius = currentWeather.temperature.converted(to: UnitTemperature.celsius).value
             
             // Get humidity as percentage (0-100)
             let humidity = Int(currentWeather.humidity * 100)
@@ -204,14 +204,16 @@ public final class AppleWeatherService: WeatherServiceProtocol, @unchecked Senda
     
     /// Map WeatherKit errors to our error type
     private func mapWeatherKitError(_ error: WeatherError) -> WeatherServiceError {
-        switch error {
-        case .networkError(let underlying):
-            return .networkError(underlying: underlying)
-        case .locationError:
+        // WeatherError cases vary by iOS version, use a general approach
+        let errorDescription = String(describing: error).lowercased()
+        
+        if errorDescription.contains("network") {
+            return .networkError(underlying: error)
+        } else if errorDescription.contains("location") {
             return .locationInvalid
-        case .permissionDenied:
+        } else if errorDescription.contains("permission") || errorDescription.contains("unauthorized") {
             return .unauthorized
-        default:
+        } else {
             return .unknown(underlying: error)
         }
     }
