@@ -1,0 +1,6 @@
+framework module Pods_LocationKitProject_Example {
+  umbrella header "Pods-LocationKitProject_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

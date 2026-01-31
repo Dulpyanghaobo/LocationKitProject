@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008A8A8ADEF2FE1973F3914E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		008A8A8ADEF2FE1973F3914E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2F4F0998FCCA906446B2B381 /* Pods-LocationKitProject_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationKitProject_Example.debug.xcconfig"; path = "Target Support Files/Pods-LocationKitProject_Example/Pods-LocationKitProject_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		33EF3ADE3529A0F1AC11D3DC /* Pods_LocationKitProject_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationKitProject_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCED861725EC3FB892B2CAB /* Pods-LocationKitProject_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationKitProject_Tests.release.xcconfig"; path = "Target Support Files/Pods-LocationKitProject_Tests/Pods-LocationKitProject_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -42,8 +42,8 @@
 		607FACE51AFB9204008FA782 /* LocationKitProject_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationKitProject_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		CFCAFBAA1286CCCF64EB6F0C /* LocationKitProject.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LocationKitProject.podspec; path = ../LocationKitProject.podspec; sourceTree = "<group>"; };
-		DB34E39DD00CD58BD282B571 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CFCAFBAA1286CCCF64EB6F0C /* LocationKitProject.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LocationKitProject.podspec; path = ../LocationKitProject.podspec; sourceTree = "<group>"; };
+		DB34E39DD00CD58BD282B571 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F03F8FB406BD8CFE43267C3C /* Pods-LocationKitProject_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationKitProject_Example.release.xcconfig"; path = "Target Support Files/Pods-LocationKitProject_Example/Pods-LocationKitProject_Example.release.xcconfig"; sourceTree = "<group>"; };
 		FBCD6BEEF92A80C89BB03F19 /* Pods_LocationKitProject_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationKitProject_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDD57E2EDAB41B4341222B03 /* Pods-LocationKitProject_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationKitProject_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LocationKitProject_Tests/Pods-LocationKitProject_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +156,6 @@
 				FDD57E2EDAB41B4341222B03 /* Pods-LocationKitProject_Tests.debug.xcconfig */,
 				3FCED861725EC3FB892B2CAB /* Pods-LocationKitProject_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -479,6 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LocationKitProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -494,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LocationKitProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -516,6 +518,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -534,6 +537,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

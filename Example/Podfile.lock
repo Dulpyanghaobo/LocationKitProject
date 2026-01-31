@@ -1,0 +1,16 @@
+PODS:
+  - LocationKitProject (0.1.0)
+
+DEPENDENCIES:
+  - LocationKitProject (from `../`)
+
+EXTERNAL SOURCES:
+  LocationKitProject:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LocationKitProject: c67d2e77f52a886943e64eb4038cbb9adec85a98
+
+PODFILE CHECKSUM: 605e38cd0ed8a92cb16fddde94915353c677324d
+
+COCOAPODS: 1.16.2
