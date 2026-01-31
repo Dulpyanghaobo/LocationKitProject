@@ -321,7 +321,7 @@ public extension LocationManager {
     
     /// Open app settings for location permission
     static func openAppSettings() {
-        guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
     }
     

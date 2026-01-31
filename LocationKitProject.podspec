@@ -28,7 +28,13 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Dulpyanghaobo/LocationKitProject.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  # -------------------- 修改重点 --------------------
+  # 将目标版本提升到 16.0 以解决 measurementSystem 报错
+  s.ios.deployment_target = '16.0'
+  
+  # 指定 Swift 版本为 5.0
+  s.swift_version = '5.0'
+  # ------------------------------------------------
 
   s.source_files = 'LocationKitProject/Classes/**/*'
   
