@@ -280,6 +280,82 @@ locationManager.stopUpdatingLocation()
 
 ---
 
-**版本**: 1.0  
-**最后更新**: 2026-01-30  
+## 🔍 附近地点搜索 API (Nearby Search)
+
+### 搜索附近地点
+
+```swift
+// 搜索附近 500 米内的餐厅
+let places = try await LocationKit.shared.searchNearbyPlaces(
+    keyword: "restaurant",
+    radius: 500,
+    limit: 10
+)
+
+for place in places {
+    print("\(place.name) - \(place.distanceString ?? "?")")
+    print("  地址: \(place.address ?? "N/A")")
+    print("  类别: \(place.category ?? "Unknown")")
+}
+```
+
+### 简化 API
+
+```swift
+// 简化版本，默认当前位置
+let cafes = try await LocationKit.shared.searchNearby(keyword: "cafe", radius: 1000)
+```
+
+### 带元数据的搜索结果
+
+```swift
+let result = try await LocationKit.shared.searchNearbyWithResult(
+    radius: 500,
+    keyword: "convenience store"
+)
+print("是否来自缓存: \(result.isFromCache)")
+print("搜索半径: \(result.searchRadius)m")
+print("找到: \(result.places.count) 个地点")
+```
+
+### 地址自动补全
+
+```swift
+// 用户输入 "星巴克"
+let completions = try await LocationKit.shared.searchAddressCompletions(query: "星巴克")
+for completion in completions {
+    print("\(completion.title) - \(completion.subtitle ?? "")")
+}
+
+// 获取地点详情
+if let place = try await LocationKit.shared.getPlaceDetails(from: completions.first!) {
+    print("地址: \(place.address ?? "N/A")")
+    print("坐标: \(place.coordinate.latitude), \(place.coordinate.longitude)")
+}
+```
+
+### NearbyPlace 数据模型
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| `id` | UUID | 唯一标识符 |
+| `name` | String | POI 名称 |
+| `location` | CLLocation | 位置坐标 |
+| `distance` | Double? | 距离（米） |
+| `distanceString` | String? | 格式化距离 (如 "500 m", "1.2 km") |
+| `address` | String? | 完整地址 |
+| `city` | String? | 城市 |
+| `street` | String? | 街道 |
+| `category` | String? | POI 类别 |
+
+### 缓存策略
+
+- **缓存 TTL**: 15 分钟
+- **最大缓存数**: 50 条
+- **缓存 Key**: 坐标 + 半径 + 关键词
+
+---
+
+**版本**: 1.1  
+**最后更新**: 2026-02-01  
 **维护者**: TimeProof iOS Team

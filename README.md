@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/LocationKitProject.svg?style=flat)](https://cocoapods.org/pods/LocationKitProject)
 [![Platform](https://img.shields.io/cocoapods/p/LocationKitProject.svg?style=flat)](https://cocoapods.org/pods/LocationKitProject)
 
-A **high-performance, layered architecture** location component for iOS with **WeatherKit integration** and **smart burst-mode caching**. Designed for watermark camera and travel camera scenarios.
+A **high-performance, layered architecture** location component for iOS with **WeatherKit integration**, **smart burst-mode caching**, and **address search capabilities**. Designed for watermark camera, travel camera, and address picker scenarios.
 
 ---
 
@@ -15,6 +15,8 @@ A **high-performance, layered architecture** location component for iOS with **W
 | 🏗️ **Facade Pattern** | Single entry point via `LocationKit.shared` — no need to manage multiple services |
 | 📸 **Smart Burst Cache** | Reuses geo-data within 20m/120s, but auto-updates timestamps for burst photography |
 | 🌤️ **WeatherKit Integration** | Real Apple Weather data with automatic mock fallback on simulator |
+| 🔍 **Address Search** | Real-time address autocomplete with `MKLocalSearchCompleter` |
+| 🏪 **Nearby POI** | Get nearby points of interest without keywords |
 | 🧪 **Protocol-Based DI** | All services are protocol-based for easy unit testing and mocking |
 | ⚡ **Modern Concurrency** | 100% `async/await` with `TaskGroup` for parallel data fetching |
 | 🛡️ **Timeout Protection** | 3-second circuit breaker for weather requests to prevent UI blocking |
@@ -36,6 +38,9 @@ LocationKitProject/Classes/
 │   ├── LocationKit+Models.swift    # CameraLocationContext, Scene, Mode
 │   ├── WeatherService.swift        # WeatherKit + MockWeatherService
 │   ├── GeocodingService.swift      # Reverse geocoding with cache
+│   ├── AddressSearchService.swift  # 🔍 Address search & POI
+│   ├── NearbySearchService.swift   # Nearby places search
+│   ├── NearbySearchModels.swift    # NearbyPlace model
 │   ├── AltitudeService.swift       # Altitude formatting
 │   └── DistanceCalculator.swift    # Distance utilities
 │
@@ -61,7 +66,7 @@ dependencies: [
 ]
 ```
 
-### 2. Basic Usage
+### 2. Basic Usage - Camera Context
 
 ```swift
 import LocationKitProject
@@ -96,55 +101,137 @@ let travelContext = try await LocationKit.shared.fetchTravelContext()
 let burstContext = try await LocationKit.shared.fetchBurstContext()
 ```
 
-### 4. Binding to UI
+---
+
+## 🔍 Address Search API
+
+### Real-time Search Autocomplete
+
+Use this for "type-as-you-search" address input:
 
 ```swift
-func updateWatermarkUI(with context: CameraLocationContext) {
-    // Direct UI binding - no transformation needed
-    titleLabel.text = context.display.title
-    subtitleLabel.text = context.display.subtitle
-    weatherLabel.text = context.display.weatherStr
-    timeLabel.text = context.display.timeStr
-    
-    // Weather icon (SF Symbol)
-    if let weather = context.raw.weather {
-        weatherIcon.image = UIImage(systemName: weather.iconName)
+// Real-time search with callbacks
+LocationKit.shared.searchAddressRealtime("星巴克") { results in
+    // results: [AddressSearchResult]
+    for result in results {
+        print("\(result.title) - \(result.subtitle)")
     }
-    
-    // ⚠️ IMPORTANT: Display Apple Weather attribution
-    if let logoURL = context.raw.weather?.attributionLogoURL {
-        loadAttributionLogo(from: logoURL)
-    }
+} onError: { error in
+    print("Search error: \(error)")
+}
+```
+
+### Async Search
+
+```swift
+// Async/await search
+let results = try await LocationKit.shared.searchAddress(query: "星巴克")
+
+for result in results {
+    print("\(result.title) - \(result.subtitle)")
+}
+
+// Get full address details from a search result
+if let firstResult = results.first {
+    let addressInfo = try await LocationKit.shared.getAddressDetails(from: firstResult)
+    print("Full address: \(addressInfo?.formattedAddress ?? "")")
+    print("Coordinates: \(addressInfo?.latitude ?? 0), \(addressInfo?.longitude ?? 0)")
+}
+```
+
+### Current Location Address
+
+```swift
+// Get address for current location
+if let currentAddress = try await LocationKit.shared.getCurrentLocationAddress() {
+    print("Name: \(currentAddress.name ?? "")")
+    print("Address: \(currentAddress.formattedAddress)")
+    print("City: \(currentAddress.city ?? "")")
+    print("District: \(currentAddress.district ?? "")")
 }
 ```
 
 ---
 
-## ⚙️ Configuration
+## 🏪 Nearby POI API
 
-### Required `Info.plist` Keys
+### Get Nearby Points of Interest
 
-```xml
-<!-- Location Permission (Required) -->
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>We need your location to add geographic information to your photos.</string>
+```swift
+// Get all POI within 200 meters (no keyword needed)
+let pois = try await LocationKit.shared.getNearbyPOI(radius: 200, limit: 20)
 
-<!-- Optional: Background Location -->
-<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-<string>We need your location to track your travel route.</string>
-<key>UIBackgroundModes</key>
-<array>
-    <string>location</string>
-</array>
+for poi in pois {
+    print("\(poi.name ?? "Unknown") - \(poi.distanceString ?? "")")
+    print("  Address: \(poi.formattedAddress)")
+}
 ```
 
-### WeatherKit Capability (For Real Weather Data)
+### Search POI by Keyword
 
-1. In **Xcode** → Select your target → **Signing & Capabilities**
-2. Click **+ Capability** → Add **WeatherKit**
-3. Ensure your **App ID** has WeatherKit enabled in [Apple Developer Portal](https://developer.apple.com/account/resources/identifiers)
+```swift
+// Search for specific type of POI
+let cafes = try await LocationKit.shared.getPOIByKeyword("咖啡", radius: 500, limit: 10)
 
-> ⚠️ **Note**: WeatherKit requires a paid Apple Developer account and is NOT available on simulator. The library automatically falls back to `MockWeatherService` on simulator.
+for cafe in cafes {
+    print("\(cafe.name ?? "") - \(cafe.distanceString ?? "")")
+}
+```
+
+### Get POI by Multiple Categories
+
+```swift
+// Search multiple categories at once
+let categories = ["餐厅", "咖啡", "超市", "银行"]
+let pois = await LocationKit.shared.getNearbyPOIByCategories(
+    radius: 500,
+    categories: categories,
+    limitPerCategory: 5
+)
+
+for poi in pois {
+    print("\(poi.name ?? "") [\(poi.category ?? "")] - \(poi.distanceString ?? "")")
+}
+```
+
+---
+
+## 📋 Default Address List (For Address Picker)
+
+### Get Default Content (Current Location + POI + History)
+
+Perfect for showing default content when the search box is empty:
+
+```swift
+// Get default addresses with nearby POI
+let addresses = await LocationKit.shared.getDefaultAddressesWithPOI(
+    nearbyRadius: 200,   // Search POI within 200m
+    nearbyLimit: 10      // Max 10 POI
+)
+
+for address in addresses {
+    if address.isCurrentLocation {
+        print("📍 Current: \(address.name ?? address.formattedAddress)")
+    } else if address.isFromHistory {
+        print("🕐 History: \(address.name ?? address.formattedAddress)")
+    } else {
+        print("🏪 POI: \(address.name ?? "") - \(address.distanceString ?? "")")
+    }
+}
+```
+
+### Search History Management
+
+```swift
+// Add to search history
+LocationKit.shared.addAddressToHistory(addressInfo)
+
+// Get search history
+let history = LocationKit.shared.getAddressSearchHistory()
+
+// Clear all history
+LocationKit.shared.clearAddressSearchHistory()
+```
 
 ---
 
@@ -152,21 +239,19 @@ func updateWatermarkUI(with context: CameraLocationContext) {
 
 ### `CameraLocationContext`
 
-The main return type containing everything needed for a camera watermark:
+The main return type for camera watermark scenarios:
 
 ```swift
 public struct CameraLocationContext {
-    // UI-ready display strings
     var display: Display {
         let title: String          // "Beijing, Chaoyang"
         let subtitle: String       // "Sanlitun SOHO"
         let weatherStr: String     // "Sunny 25°C"
-        var timeStr: String        // "2026-01-31 18:30:00" (mutable for cache)
+        var timeStr: String        // "2026-01-31 18:30:00"
         let altitudeStr: String    // "50.0 m"
         let coordinateStr: String  // "39.9042°N, 116.4074°E"
     }
     
-    // Raw underlying data
     var raw: Raw {
         let location: CLLocation
         let address: GeocodedAddress?
@@ -175,14 +260,46 @@ public struct CameraLocationContext {
         let weather: WeatherInfo?
     }
     
-    // Status flags
     var flags: Flags {
-        var isCache: Bool           // From burst cache?
-        let isMock: Bool            // Using mock weather?
-        let weatherTimedOut: Bool   // Weather request timed out?
-        let scene: LocationScene    // .work or .travel
-        let mode: LocationMode      // .fast or .accurate
+        var isCache: Bool
+        let isMock: Bool
+        let weatherTimedOut: Bool
+        let scene: LocationScene
+        let mode: LocationMode
     }
+}
+```
+
+### `AddressSearchResult`
+
+Result from address search autocomplete:
+
+```swift
+public struct AddressSearchResult {
+    let title: String      // "星巴克咖啡(三里屯店)"
+    let subtitle: String   // "北京市朝阳区三里屯路"
+    var fullText: String   // Combined title + subtitle
+}
+```
+
+### `AddressInfo`
+
+Complete address information:
+
+```swift
+public struct AddressInfo {
+    var name: String?           // "星巴克咖啡"
+    var formattedAddress: String // Full formatted address
+    var city: String?           // "北京市"
+    var district: String?       // "朝阳区"
+    var street: String?         // "三里屯路"
+    var latitude: Double
+    var longitude: Double
+    var distance: Double?       // Distance in meters
+    var distanceString: String? // "500 m" or "1.2 km"
+    var category: String?       // POI category
+    var isCurrentLocation: Bool
+    var isFromHistory: Bool
 }
 ```
 
@@ -219,44 +336,94 @@ The cache strategy is optimized for burst photography:
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Example Burst Test:**
+---
+
+## ⚙️ Configuration
+
+### Required `Info.plist` Keys
+
+```xml
+<!-- Location Permission (Required) -->
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location to add geographic information to your photos.</string>
+
+<!-- Optional: Background Location -->
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>We need your location to track your travel route.</string>
 ```
-Call #1: 🔄 CACHE MISS  TimeStr: "2026-01-31 18:30:00"
-Call #2: ✅ CACHE HIT   TimeStr: "2026-01-31 18:30:01"  
-Call #3: ✅ CACHE HIT   TimeStr: "2026-01-31 18:30:02"
-Call #4: ✅ CACHE HIT   TimeStr: "2026-01-31 18:30:03"
-Call #5: ✅ CACHE HIT   TimeStr: "2026-01-31 18:30:04"
+
+### WeatherKit Capability
+
+1. In **Xcode** → Select your target → **Signing & Capabilities**
+2. Click **+ Capability** → Add **WeatherKit**
+3. Ensure your **App ID** has WeatherKit enabled in Apple Developer Portal
+
+> ⚠️ WeatherKit requires a paid Apple Developer account. The library automatically falls back to `MockWeatherService` on simulator.
+
+---
+
+## 🎨 UI Binding Example
+
+### UIKit
+
+```swift
+func updateWatermarkUI(with context: CameraLocationContext) {
+    titleLabel.text = context.display.title
+    subtitleLabel.text = context.display.subtitle
+    weatherLabel.text = context.display.weatherStr
+    timeLabel.text = context.display.timeStr
+    
+    if let weather = context.raw.weather {
+        weatherIcon.image = UIImage(systemName: weather.iconName)
+    }
+    
+    // ⚠️ REQUIRED: Display Apple Weather attribution
+    if let logoURL = context.raw.weather?.attributionLogoURL {
+        loadAttributionLogo(from: logoURL)
+    }
+}
+```
+
+### SwiftUI
+
+```swift
+struct LocationWatermarkView: View {
+    @State private var context: CameraLocationContext?
+    
+    var body: some View {
+        VStack {
+            if let ctx = context {
+                Text(ctx.display.title).font(.headline)
+                Text(ctx.display.subtitle).font(.subheadline)
+                Text(ctx.display.weatherStr)
+                Text(ctx.display.timeStr).font(.caption)
+            }
+        }
+        .task {
+            context = try? await LocationKit.shared.fetchTravelContext()
+        }
+    }
+}
 ```
 
 ---
 
-## 🧪 Testing & Mocking
-
-### Dependency Injection for Tests
+## 🧹 Cache Management
 
 ```swift
-// Create a custom mock weather service
-let mockWeather = MockWeatherService()
+// Clear camera context cache
+LocationKit.shared.clearCache()
 
-// Inject into LocationKit
-let testKit = LocationKit(
-    locationManager: .shared,
-    geocodingService: .shared,
-    altitudeService: .shared,
-    weatherService: mockWeather  // Inject mock
-)
+// Clear nearby POI cache
+LocationKit.shared.clearNearbyCache()
 
-// Now use testKit for testing
-let context = try await testKit.fetchCameraContext(scene: .work, mode: .fast)
-XCTAssertTrue(context.flags.isMock)
-```
+// Clear address search history
+LocationKit.shared.clearAddressSearchHistory()
 
-### Configure Mock Behavior
-
-```swift
-let mockWeather = MockWeatherService()
-await mockWeather.setDelayRange(0.1...0.5)  // Fast responses
-await mockWeather.setSimulateFailures(true, probability: 0.3)  // 30% failure rate
+// Check cache status
+let status = LocationKit.shared.cacheStatus
+print("Has cache: \(status.hasCache)")
+print("Last time: \(status.lastTime?.description ?? "none")")
 ```
 
 ---
@@ -265,58 +432,30 @@ await mockWeather.setSimulateFailures(true, probability: 0.3)  // 30% failure ra
 
 ### Q: Why does my app crash on simulator with "WeatherKit not available"?
 
-**A:** WeatherKit requires device entitlements and cannot run on simulator. LocationKit automatically detects this and uses `MockWeatherService` instead. If you see this error, ensure you're using `LocationKit.shared` (which handles this automatically) rather than instantiating `AppleWeatherService` directly.
+**A:** WeatherKit cannot run on simulator. LocationKit automatically uses `MockWeatherService` instead when running on simulator.
 
 ### Q: Does the cache update the timestamp?
 
-**A:** **Yes!** This is a key feature. When cache hits occur:
-- Geographic data (address, weather, POI) is reused
-- But `timeStr` and `timestamp` are **always updated** to current time
-- This ensures each photo in a burst sequence has a unique timestamp
-
-### Q: How do I display the Apple Weather attribution?
-
-**A:** Apple requires displaying their logo when using WeatherKit data. Use the provided URLs:
-
-```swift
-if let weather = context.raw.weather {
-    // Load and display the Apple Weather logo
-    if let logoURL = weather.attributionLogoURL {
-        loadImage(from: logoURL) { image in
-            self.attributionImageView.image = image
-        }
-    }
-    
-    // Make the legal page accessible
-    if let legalURL = weather.attributionURL {
-        self.attributionButton.addAction(UIAction { _ in
-            UIApplication.shared.open(legalURL)
-        }, for: .touchUpInside)
-    }
-}
-```
+**A:** **Yes!** When cache hits occur, `timeStr` and `timestamp` are always updated to current time, ensuring each photo has a unique timestamp.
 
 ### Q: What happens if weather request times out?
 
-**A:** The weather request has a 3-second timeout (circuit breaker). If it times out:
+**A:** The weather request has a 3-second timeout. If it times out:
 - `context.flags.weatherTimedOut` will be `true`
 - `context.display.weatherStr` will be `"-- 0°C"`
 - Other data (location, address, POI) will still be available
 
-### Q: Can I clear the cache manually?
+### Q: How do I display the Apple Weather attribution?
 
-**A:** Yes:
+**A:** Apple requires displaying their logo when using WeatherKit data:
+
 ```swift
-LocationKit.shared.clearCache()
-```
-
-### Q: How do I check current cache status?
-
-**A:**
-```swift
-let status = LocationKit.shared.cacheStatus
-print("Has cache: \(status.hasCache)")
-print("Last time: \(status.lastTime?.description ?? "none")")
+if let logoURL = context.raw.weather?.attributionLogoURL {
+    AsyncImage(url: logoURL).frame(height: 20)
+}
+if let legalURL = context.raw.weather?.attributionURL {
+    Link("Weather", destination: legalURL)
+}
 ```
 
 ---
@@ -337,3 +476,4 @@ Dulpyanghaobo
 
 - Apple WeatherKit for weather data
 - Apple CoreLocation for location services
+- Apple MapKit for address search and POI

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 // MARK: - LocationKit Facade
 
@@ -483,5 +484,484 @@ public extension LocationKit {
     /// Will use cache if available within thresholds
     func fetchBurstContext() async throws -> CameraLocationContext {
         try await fetchCameraContext(scene: .work, mode: .fast)
+    }
+}
+
+// MARK: - LocationKit + Nearby Search
+
+public extension LocationKit {
+    
+    /// Search for nearby places/POIs
+    /// - Parameters:
+    ///   - center: Search center coordinate (optional, defaults to current location)
+    ///   - radius: Search radius in meters (default: 500)
+    ///   - keyword: Search keyword (e.g., "restaurant", "cafe", or user input)
+    ///   - limit: Maximum number of results (default: 20)
+    ///   - useCache: Whether to use cached results (default: true, TTL: 15 minutes)
+    /// - Returns: Array of nearby places sorted by distance
+    /// - Throws: NearbySearchError or LocationKitError
+    ///
+    /// Usage:
+    /// ```swift
+    /// // Search nearby restaurants
+    /// let places = try await LocationKit.shared.searchNearbyPlaces(
+    ///     keyword: "restaurant",
+    ///     radius: 500
+    /// )
+    ///
+    /// // Display results
+    /// for place in places {
+    ///     print("\(place.name) - \(place.distanceString ?? "?")")
+    /// }
+    /// ```
+    func searchNearbyPlaces(
+        center: CLLocationCoordinate2D? = nil,
+        radius: Double = 500,
+        keyword: String? = nil,
+        limit: Int = 20,
+        useCache: Bool = true
+    ) async throws -> [NearbyPlace] {
+        
+        // Get center coordinate
+        let searchCenter: CLLocationCoordinate2D
+        if let center = center {
+            searchCenter = center
+        } else {
+            // Use current location
+            let location = try await locationManager.getCurrentLocation()
+            searchCenter = location.coordinate
+        }
+        
+        print("📍 [LocationKit] Nearby search - Center: \(searchCenter.latitude), \(searchCenter.longitude), Radius: \(radius)m")
+        
+        return try await NearbySearchService.shared.searchNearby(
+            center: searchCenter,
+            radius: radius,
+            keyword: keyword,
+            limit: limit,
+            useCache: useCache
+        )
+    }
+    
+    /// Search for nearby places with simplified parameters
+    /// - Parameters:
+    ///   - keyword: Search keyword (e.g., "restaurant", "cafe")
+    ///   - radius: Search radius in meters (default: 500)
+    /// - Returns: Array of nearby places sorted by distance
+    /// - Throws: NearbySearchError or LocationKitError
+    ///
+    /// Usage:
+    /// ```swift
+    /// let cafes = try await LocationKit.shared.searchNearby(keyword: "cafe", radius: 1000)
+    /// ```
+    func searchNearby(
+        keyword: String,
+        radius: Double = 500
+    ) async throws -> [NearbyPlace] {
+        try await searchNearbyPlaces(
+            center: nil,
+            radius: radius,
+            keyword: keyword,
+            limit: 20,
+            useCache: true
+        )
+    }
+    
+    /// Search for nearby places with full result metadata
+    /// - Parameters:
+    ///   - center: Search center coordinate (optional, defaults to current location)
+    ///   - radius: Search radius in meters (default: 500)
+    ///   - keyword: Search keyword
+    ///   - limit: Maximum number of results (default: 20)
+    ///   - useCache: Whether to use cached results (default: true)
+    /// - Returns: NearbySearchResult with places and metadata
+    /// - Throws: NearbySearchError or LocationKitError
+    func searchNearbyWithResult(
+        center: CLLocationCoordinate2D? = nil,
+        radius: Double = 500,
+        keyword: String? = nil,
+        limit: Int = 20,
+        useCache: Bool = true
+    ) async throws -> NearbySearchResult {
+        
+        // Get center coordinate
+        let searchCenter: CLLocationCoordinate2D
+        if let center = center {
+            searchCenter = center
+        } else {
+            let location = try await locationManager.getCurrentLocation()
+            searchCenter = location.coordinate
+        }
+        
+        return try await NearbySearchService.shared.searchNearbyWithResult(
+            center: searchCenter,
+            radius: radius,
+            keyword: keyword,
+            limit: limit,
+            useCache: useCache
+        )
+    }
+    
+    /// Search for address completions (autocomplete)
+    /// - Parameters:
+    ///   - query: User input query string
+    ///   - region: Optional region to bias results (defaults to current location area)
+    /// - Returns: Array of address completions
+    /// - Throws: NearbySearchError
+    ///
+    /// Usage:
+    /// ```swift
+    /// // User types "Apple"
+    /// let completions = try await LocationKit.shared.searchAddressCompletions(query: "Apple")
+    /// for completion in completions {
+    ///     print("\(completion.title) - \(completion.subtitle ?? "")")
+    /// }
+    /// ```
+    func searchAddressCompletions(
+        query: String,
+        region: MKCoordinateRegion? = nil
+    ) async throws -> [AddressCompletion] {
+        
+        // If no region provided, try to use current location
+        var searchRegion = region
+        if searchRegion == nil {
+            do {
+                let location = try await locationManager.getCurrentLocation()
+                searchRegion = MKCoordinateRegion(
+                    center: location.coordinate,
+                    latitudinalMeters: 10000,
+                    longitudinalMeters: 10000
+                )
+            } catch {
+                // Continue without region bias if location fails
+                print("⚠️ [LocationKit] Could not get location for address completion bias")
+            }
+        }
+        
+        return try await NearbySearchService.shared.searchAddressCompletions(
+            query: query,
+            region: searchRegion
+        )
+    }
+    
+    /// Get place details from an address completion
+    /// - Parameter completion: The address completion to get details for
+    /// - Returns: NearbyPlace with full details, or nil if not found
+    /// - Throws: NearbySearchError
+    func getPlaceDetails(from completion: AddressCompletion) async throws -> NearbyPlace? {
+        try await NearbySearchService.shared.getPlaceDetails(from: completion)
+    }
+    
+    /// Clear the nearby search cache
+    func clearNearbyCache() {
+        NearbySearchService.shared.clearCache()
+    }
+    
+    /// Get nearby search cache statistics
+    var nearbyCacheStats: (count: Int, oldestAge: TimeInterval?) {
+        NearbySearchService.shared.cacheStats
+    }
+}
+
+// MARK: - LocationKit + Address Search
+
+public extension LocationKit {
+    
+    // MARK: - 地址搜索联想
+    
+    /// 搜索地址（边输边搜联想）
+    /// 使用 MKLocalSearchCompleter 实现实时搜索联想
+    /// - Parameters:
+    ///   - query: 用户输入的搜索文字
+    ///   - region: 搜索区域（可选，默认使用当前位置周边）
+    /// - Returns: 地址搜索结果列表
+    /// - Throws: AddressSearchError
+    ///
+    /// Usage:
+    /// ```swift
+    /// // 用户输入 "星巴克"
+    /// let results = try await LocationKit.shared.searchAddress(query: "星巴克")
+    /// for result in results {
+    ///     print("\(result.title) - \(result.subtitle)")
+    /// }
+    /// ```
+    func searchAddress(query: String, region: MKCoordinateRegion? = nil) async throws -> [AddressSearchResult] {
+        // 如果没有提供区域，尝试使用当前位置
+        var searchRegion = region
+        if searchRegion == nil {
+            do {
+                let location = try await locationManager.getCurrentLocation()
+                searchRegion = MKCoordinateRegion(
+                    center: location.coordinate,
+                    latitudinalMeters: 10000,
+                    longitudinalMeters: 10000
+                )
+            } catch {
+                print("⚠️ [LocationKit] Could not get location for search region bias")
+            }
+        }
+        
+        return try await AddressSearchService.shared.search(query: query, region: searchRegion)
+    }
+    
+    /// 实时搜索地址（边输边搜，使用回调）
+    /// - Parameters:
+    ///   - query: 用户输入的搜索文字
+    ///   - completion: 搜索结果回调
+    ///   - onError: 错误回调
+    func searchAddressRealtime(
+        _ query: String,
+        completion: @escaping ([AddressSearchResult]) -> Void,
+        onError: ((Error) -> Void)? = nil
+    ) {
+        AddressSearchService.shared.updateSearchQuery(query, completion: completion, onError: onError)
+    }
+    
+    /// 取消当前地址搜索
+    func cancelAddressSearch() {
+        AddressSearchService.shared.cancelSearch()
+    }
+    
+    /// 设置地址搜索区域
+    /// - Parameter region: 搜索区域
+    func setAddressSearchRegion(_ region: MKCoordinateRegion) {
+        AddressSearchService.shared.setSearchRegion(region)
+    }
+    
+    /// 根据当前位置设置搜索区域
+    func setAddressSearchRegionToCurrent() async {
+        do {
+            let location = try await locationManager.getCurrentLocation()
+            AddressSearchService.shared.setSearchRegion(around: location)
+        } catch {
+            print("⚠️ [LocationKit] Could not set search region: \(error)")
+        }
+    }
+    
+    // MARK: - 获取地址详情
+    
+    /// 获取搜索结果的完整地址信息
+    /// - Parameter result: 搜索结果
+    /// - Returns: 完整的地址信息
+    func getAddressDetails(from result: AddressSearchResult) async throws -> AddressInfo? {
+        try await AddressSearchService.shared.getAddressDetails(from: result)
+    }
+    
+    // MARK: - 周边地址（反向地理编码）
+    
+    /// 获取当前位置的地址
+    /// - Returns: 当前位置的地址信息
+    func getCurrentLocationAddress() async throws -> AddressInfo? {
+        let location = try await locationManager.getCurrentLocation()
+        return try await AddressSearchService.shared.getCurrentAddress(for: location)
+    }
+    
+    /// 获取指定位置的地址
+    /// - Parameter location: 位置
+    /// - Returns: 地址信息
+    func getAddress(for location: CLLocation) async throws -> AddressInfo? {
+        try await AddressSearchService.shared.getCurrentAddress(for: location)
+    }
+    
+    /// 获取周边地址列表
+    /// - Parameter location: 位置（可选，默认当前位置）
+    /// - Returns: 周边地址列表
+    func getNearbyAddresses(location: CLLocation? = nil) async throws -> [AddressInfo] {
+        let targetLocation: CLLocation
+        if let location = location {
+            targetLocation = location
+        } else {
+            targetLocation = try await locationManager.getCurrentLocation()
+        }
+        return try await AddressSearchService.shared.getNearbyAddresses(around: targetLocation)
+    }
+    
+    // MARK: - 默认展示内容
+    
+    /// 获取地址选择器的默认展示内容
+    /// 包含：当前位置地址 + 历史记录
+    /// - Returns: 默认展示的地址列表
+    func getDefaultAddresses() async -> [AddressInfo] {
+        var currentLocation: CLLocation?
+        do {
+            currentLocation = try await locationManager.getCurrentLocation()
+        } catch {
+            print("⚠️ [LocationKit] Could not get current location for default addresses")
+        }
+        return await AddressSearchService.shared.getDefaultAddresses(currentLocation: currentLocation)
+    }
+    
+    // MARK: - 搜索历史
+    
+    /// 获取地址搜索历史
+    /// - Returns: 历史记录列表
+    func getAddressSearchHistory() -> [AddressInfo] {
+        AddressSearchService.shared.getSearchHistory()
+    }
+    
+    /// 添加地址到搜索历史
+    /// - Parameter address: 地址信息
+    func addAddressToHistory(_ address: AddressInfo) {
+        AddressSearchService.shared.addToHistory(address)
+    }
+    
+    /// 清除地址搜索历史
+    func clearAddressSearchHistory() {
+        AddressSearchService.shared.clearHistory()
+    }
+    
+    /// 从历史记录中删除地址
+    /// - Parameter address: 要删除的地址
+    func removeAddressFromHistory(_ address: AddressInfo) {
+        AddressSearchService.shared.removeFromHistory(address)
+    }
+    
+    // MARK: - 周边兴趣点 (Nearby POI)
+    
+    /// 获取周边兴趣点（搜索框为空时使用）
+    /// 用于在用户未输入搜索内容时显示附近的地点
+    /// - Parameters:
+    ///   - location: 中心位置（可选，默认当前位置）
+    ///   - radius: 搜索半径（米），默认 500
+    ///   - limit: 返回数量上限，默认 20
+    /// - Returns: 周边兴趣点列表（按距离排序）
+    /// - Throws: AddressSearchError
+    ///
+    /// Usage:
+    /// ```swift
+    /// // 获取当前位置 500m 内的兴趣点
+    /// let pois = try await LocationKit.shared.getNearbyPOI(radius: 500)
+    /// for poi in pois {
+    ///     print("\(poi.name ?? "") - \(poi.distanceString ?? "")")
+    /// }
+    /// ```
+    func getNearbyPOI(
+        location: CLLocation? = nil,
+        radius: Double = 500,
+        limit: Int = 20
+    ) async throws -> [AddressInfo] {
+        let targetLocation: CLLocation
+        if let location = location {
+            targetLocation = location
+        } else {
+            targetLocation = try await locationManager.getCurrentLocation()
+        }
+        
+        return try await AddressSearchService.shared.getNearbyPOI(
+            around: targetLocation,
+            radius: radius,
+            limit: limit
+        )
+    }
+    
+    /// 根据关键词获取周边 POI
+    /// - Parameters:
+    ///   - keyword: 搜索关键词（如 "餐厅"、"咖啡"）
+    ///   - location: 中心位置（可选，默认当前位置）
+    ///   - radius: 搜索半径（米），默认 500
+    ///   - limit: 返回数量上限，默认 20
+    /// - Returns: POI 列表（按距离排序）
+    ///
+    /// Usage:
+    /// ```swift
+    /// // 搜索 200m 内的餐厅
+    /// let restaurants = try await LocationKit.shared.getPOIByKeyword("餐厅", radius: 200)
+    /// ```
+    func getPOIByKeyword(
+        _ keyword: String,
+        location: CLLocation? = nil,
+        radius: Double = 500,
+        limit: Int = 20
+    ) async throws -> [AddressInfo] {
+        let targetLocation: CLLocation
+        if let location = location {
+            targetLocation = location
+        } else {
+            targetLocation = try await locationManager.getCurrentLocation()
+        }
+        
+        return try await AddressSearchService.shared.searchPOIByKeyword(
+            keyword: keyword,
+            location: targetLocation,
+            radius: radius,
+            limit: limit
+        )
+    }
+    
+    /// 获取多类型周边 POI
+    /// 同时搜索多种类型的兴趣点
+    /// - Parameters:
+    ///   - location: 中心位置（可选，默认当前位置）
+    ///   - radius: 搜索半径（米），默认 500
+    ///   - categories: POI 类型列表，默认 ["餐厅", "咖啡", "超市", "银行", "药店"]
+    ///   - limitPerCategory: 每种类型返回的数量上限，默认 5
+    /// - Returns: 周边兴趣点列表（按距离排序，已去重）
+    ///
+    /// Usage:
+    /// ```swift
+    /// // 获取 500m 内的各类 POI
+    /// let pois = await LocationKit.shared.getNearbyPOIByCategories(
+    ///     radius: 500,
+    ///     categories: ["餐厅", "咖啡", "便利店"]
+    /// )
+    /// ```
+    func getNearbyPOIByCategories(
+        location: CLLocation? = nil,
+        radius: Double = 500,
+        categories: [String] = ["餐厅", "咖啡", "超市", "银行", "药店"],
+        limitPerCategory: Int = 5
+    ) async -> [AddressInfo] {
+        var targetLocation: CLLocation
+        if let location = location {
+            targetLocation = location
+        } else {
+            do {
+                targetLocation = try await locationManager.getCurrentLocation()
+            } catch {
+                print("⚠️ [LocationKit] Could not get current location for POI search")
+                return []
+            }
+        }
+        
+        return await AddressSearchService.shared.getNearbyPOIByCategories(
+            around: targetLocation,
+            radius: radius,
+            categories: categories,
+            limitPerCategory: limitPerCategory
+        )
+    }
+    
+    /// 获取增强版默认地址列表
+    /// 包含：当前位置 + 周边 POI + 历史记录
+    /// 适合在地址选择器搜索框为空时使用
+    /// - Parameters:
+    ///   - nearbyRadius: 周边 POI 搜索半径（米），默认 200
+    ///   - nearbyLimit: 周边 POI 数量上限，默认 10
+    /// - Returns: 默认展示的地址列表
+    ///
+    /// Usage:
+    /// ```swift
+    /// // 用户打开地址选择器，搜索框为空
+    /// let addresses = await LocationKit.shared.getDefaultAddressesWithPOI(
+    ///     nearbyRadius: 100,
+    ///     nearbyLimit: 10
+    /// )
+    /// ```
+    func getDefaultAddressesWithPOI(
+        nearbyRadius: Double = 200,
+        nearbyLimit: Int = 10
+    ) async -> [AddressInfo] {
+        var currentLocation: CLLocation?
+        do {
+            currentLocation = try await locationManager.getCurrentLocation()
+        } catch {
+            print("⚠️ [LocationKit] Could not get current location for default addresses")
+        }
+        
+        return await AddressSearchService.shared.getDefaultAddressesWithNearbyPOI(
+            currentLocation: currentLocation,
+            nearbyRadius: nearbyRadius,
+            nearbyLimit: nearbyLimit
+        )
     }
 }
